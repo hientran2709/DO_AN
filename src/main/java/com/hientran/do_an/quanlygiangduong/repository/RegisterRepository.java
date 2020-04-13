@@ -18,7 +18,4 @@ public interface RegisterRepository extends JpaRepository<Register, Integer> {
     @EntityGraph(attributePaths = "userRegisters")
     Optional<List<Register>> findOneByOrgNameContaining(String orgName);
 
-    @EntityGraph(attributePaths = "userRegisters")
-    Optional<List<Register>> findByTaxCodeContaining(String taxCode);
-
 }
