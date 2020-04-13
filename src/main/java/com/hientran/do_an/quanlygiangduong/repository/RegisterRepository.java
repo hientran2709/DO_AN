@@ -11,8 +11,6 @@ import java.util.List;
 @Repository
 public interface RegisterRepository extends JpaRepository<Register, Integer> {
 
-    Optional<List<Register>> findOneByTaxCodeContaining(String taxCode);
-
     Optional<Register> findOneByRegisterCode(String registerCode);
 
     Page<Register> findByStatusIn(Pageable pageable, List<Integer> status);
