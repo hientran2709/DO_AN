@@ -26,6 +26,7 @@ public class PhongService {
             AddNewPhongResponse response = new AddNewPhongResponse();
             response.setTitle("request");
             response.setErrorCode("validate.constrains.NotNull");
+            return response;
         }
 
         Phong newPhong = phongMapper.phongDTOToPhong(request.getPhongDTO());
@@ -41,6 +42,7 @@ public class PhongService {
             AddNewPhongResponse response = new AddNewPhongResponse();
             response.setTitle("AddPhong");
             response.setErrorCode("validate.constrains.SaveFail");
+            return response;
         }
 
         AddNewPhongResponse response = new AddNewPhongResponse();
