@@ -40,4 +40,17 @@ public class CSVC {
     @Column(name = "dieuhoa")
     private boolean dieuHoa;
 
+    @Override
+    public String toString() {
+        return "CSVC{" +
+                "id=" + id +
+                ", phongId=" + phongId +
+                ", soBan=" + soBan +
+                ", loaiBan='" + loaiBan + '\'' +
+                ", soGhe=" + soGhe +
+                ", mayChieu=" + mayChieu +
+                ", amThanh=" + amThanh +
+                ", dieuHoa=" + dieuHoa +
+                '}';
+    }
 }
