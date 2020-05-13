@@ -3,7 +3,6 @@ package com.hientran.do_an.quanlygiangduong.service;
 import com.fis.egp.common.client.rest.dto.ValidationErrorResponse;
 import com.fis.egp.common.config.ValidationError;
 import com.fis.egp.common.exception.ServiceException;
-import com.fis.egp.common.security.SecurityUtils;
 import com.fis.egp.common.util.ServiceExceptionBuilder;
 import com.fis.egp.common.util.ServiceUtil;
 import com.hientran.do_an.quanlygiangduong.client.dto.AddNewPhongRequest;
@@ -50,7 +49,7 @@ public class PhongService {
                 });
         if (!updatedPhong.isPresent()){
             throw ServiceExceptionBuilder.newBuilder()
-                    .addError(new ValidationErrorResponse("AddPhong", "validation.constraints.AssertFalse","cant add new phong"))
+                    .addError(new ValidationErrorResponse("AddPhong", ValidationError.AssertFalse,"cant add new phong"))
                     .build();
         }
 
@@ -59,13 +58,11 @@ public class PhongService {
         response.setErrorCode("validate.constrains.SaveSuccess");
         return response;
     }
-    public UpdateInfoPhongResponse updateInfoPhong(UpdateInfoPhongRequest request){
+
+    public UpdateInfoPhongResponse updateInfoPhong(UpdateInfoPhongRequest request) throws ServiceException {
 
         if (request == null){
-            UpdateInfoPhongResponse response = new UpdateInfoPhongResponse();
-            response.setTitle("request");
-            response.setErrorCode("validate.constrains.NotNull");
-            return response;
+            ServiceUtil.generateEmptyPayloadError();
         }
         Phong newPhong = phongMapper.phongDTOToPhong(request.getPhongDTO());
         Optional<Phong> updatedPhong = Optional.of(
@@ -77,10 +74,9 @@ public class PhongService {
                     return phong;
                 });
         if (!updatedPhong.isPresent()){
-            UpdateInfoPhongResponse response = new UpdateInfoPhongResponse();
-            response.setTitle("UpdatePhong");
-            response.setErrorCode("validate.constrains.SaveFail");
-            return response;
+            throw ServiceExceptionBuilder.newBuilder()
+                    .addError(new ValidationErrorResponse("UpdatePhong", ValidationError.AssertFalse,"cant update phong"))
+                    .build();
         }
         UpdateInfoPhongResponse response = new UpdateInfoPhongResponse();
         response.setTitle("UpdatePhong");
