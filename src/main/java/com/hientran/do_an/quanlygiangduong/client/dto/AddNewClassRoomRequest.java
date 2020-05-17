@@ -1,13 +1,15 @@
 package com.hientran.do_an.quanlygiangduong.client.dto;
 
-import com.hientran.do_an.quanlygiangduong.service.dto.PhongDTO;
+import com.hientran.do_an.quanlygiangduong.service.dto.ClassRoomDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SearchPhongRequest {
-    private PhongDTO phongDTO;
+public class AddNewClassRoomRequest {
+    private List<ClassRoomDTO> classRoomDTO;
 }

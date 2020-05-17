@@ -5,9 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class CSVCDTO {
-    Integer id;
+@NoArgsConstructor
+public class RegisterUseRoomDTO {
+    private Integer id;
 
 }

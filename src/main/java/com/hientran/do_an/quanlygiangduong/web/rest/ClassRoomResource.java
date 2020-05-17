@@ -5,7 +5,7 @@ import com.fis.egp.common.client.rest.dto.BaseDataResponse;
 import com.fis.egp.common.exception.ServiceException;
 import com.fis.egp.common.util.ResponseUtil;
 import com.hientran.do_an.quanlygiangduong.client.dto.*;
-import com.hientran.do_an.quanlygiangduong.service.PhongService;
+import com.hientran.do_an.quanlygiangduong.service.ClassRoomService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/phong")
-public class PhongResource {
+public class ClassRoomResource {
 
-    private Logger log = LoggerFactory.getLogger(PhongResource.class);
+    private Logger log = LoggerFactory.getLogger(ClassRoomResource.class);
     @Autowired
-    private PhongService service;
+    private ClassRoomService service;
 
     @PostMapping("/addnew")
-    public ResponseEntity<BaseDataResponse<AddNewPhongResponse>> addnew(
-            @RequestBody BaseDataRequest<AddNewPhongRequest> request) throws ServiceException, Exception {
+    public ResponseEntity<BaseDataResponse<AddNewClassRoomResponse>> addnew(
+            @RequestBody BaseDataRequest<AddNewClassRoomRequest> request) throws ServiceException, Exception {
         try {
-            AddNewPhongResponse response = service.addNewPhong(request.getBody());
+            AddNewClassRoomResponse response = service.addNewPhong(request.getBody());
             return ResponseUtil.wrap(response);
         } catch (ServiceException e) {
             log.error(this.getClass().getName(), e);
@@ -38,10 +38,10 @@ public class PhongResource {
         }
     }
     @PostMapping("/update-phong")
-    public ResponseEntity<BaseDataResponse<UpdateInfoPhongResponse>> updateInfoPhong(
-            @RequestBody BaseDataRequest<UpdateInfoPhongRequest> request) throws ServiceException, Exception {
+    public ResponseEntity<BaseDataResponse<UpdateInfoClassRoomResponse>> updateInfoPhong(
+            @RequestBody BaseDataRequest<UpdateInfoClassRoomRequest> request) throws ServiceException, Exception {
         try {
-            UpdateInfoPhongResponse response = service.updateInfoPhong(request.getBody());
+            UpdateInfoClassRoomResponse response = service.updateInfoPhong(request.getBody());
             return ResponseUtil.wrap(response);
         } catch (ServiceException e) {
             log.error(this.getClass().getName(), e);
@@ -53,10 +53,10 @@ public class PhongResource {
     }
 
     @PostMapping("/search-phong")
-    public ResponseEntity<BaseDataResponse<SearchPhongResponse>> searchPhong(
-            @RequestBody BaseDataRequest<SearchPhongRequest> request) throws ServiceException, Exception {
+    public ResponseEntity<BaseDataResponse<SearchClassRoomResponse>> searchClassroom(
+            @RequestBody BaseDataRequest<SearchClassRoomRequest> request) throws ServiceException, Exception {
         try {
-            SearchPhongResponse response = service.searchPhong(request.getBody());
+            SearchClassRoomResponse response = service.searchClassroom(request.getBody());
             return ResponseUtil.wrap(response);
         } catch (ServiceException e) {
             log.error(this.getClass().getName(), e);
