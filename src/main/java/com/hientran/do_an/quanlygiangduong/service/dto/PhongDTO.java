@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,18 +13,18 @@ public class PhongDTO {
     private Integer id;
 
 
-    private String sophong;
+    private String soPhong;
 
 
-    private String toanha;
+    private String toaNha;
 
 
-    private boolean tinhtrang;
+    private boolean tinhTrang;
 
     public PhongDTO(Phong phong) {
         this.id = phong.getId();
-        this.sophong = phong.getSophong();
-        this.toanha = phong.getToanha();
-        this.tinhtrang = phong.isTinhtrang();
+        this.soPhong = phong.getSoPhong();
+        this.toaNha = phong.getToaNha();
+        this.tinhTrang = phong.isTinhTrang();
     }
 }

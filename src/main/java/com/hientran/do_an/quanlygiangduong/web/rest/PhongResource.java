@@ -4,8 +4,7 @@ import com.fis.egp.common.client.rest.dto.BaseDataRequest;
 import com.fis.egp.common.client.rest.dto.BaseDataResponse;
 import com.fis.egp.common.exception.ServiceException;
 import com.fis.egp.common.util.ResponseUtil;
-import com.hientran.do_an.quanlygiangduong.client.dto.AddNewPhongRequest;
-import com.hientran.do_an.quanlygiangduong.client.dto.AddNewPhongResponse;
+import com.hientran.do_an.quanlygiangduong.client.dto.*;
 import com.hientran.do_an.quanlygiangduong.service.PhongService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +28,35 @@ public class PhongResource {
             @RequestBody BaseDataRequest<AddNewPhongRequest> request) throws ServiceException, Exception {
         try {
             AddNewPhongResponse response = service.addNewPhong(request.getBody());
+            return ResponseUtil.wrap(response);
+        } catch (ServiceException e) {
+            log.error(this.getClass().getName(), e);
+            return ResponseUtil.generateErrorResponse(e);
+        } catch (Exception e) {
+            log.error(this.getClass().getName(), e);
+            return ResponseUtil.generateErrorResponse(e);
+        }
+    }
+    @PostMapping("/update-phong")
+    public ResponseEntity<BaseDataResponse<UpdateInfoPhongResponse>> updateInfoPhong(
+            @RequestBody BaseDataRequest<UpdateInfoPhongRequest> request) throws ServiceException, Exception {
+        try {
+            UpdateInfoPhongResponse response = service.updateInfoPhong(request.getBody());
+            return ResponseUtil.wrap(response);
+        } catch (ServiceException e) {
+            log.error(this.getClass().getName(), e);
+            return ResponseUtil.generateErrorResponse(e);
+        } catch (Exception e) {
+            log.error(this.getClass().getName(), e);
+            return ResponseUtil.generateErrorResponse(e);
+        }
+    }
+
+    @PostMapping("/search-phong")
+    public ResponseEntity<BaseDataResponse<SearchPhongResponse>> searchPhong(
+            @RequestBody BaseDataRequest<SearchPhongRequest> request) throws ServiceException, Exception {
+        try {
+            SearchPhongResponse response = service.searchPhong(request.getBody());
             return ResponseUtil.wrap(response);
         } catch (ServiceException e) {
             log.error(this.getClass().getName(), e);

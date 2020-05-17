@@ -12,10 +12,22 @@ public class PhongMapper {
         } else {
             Phong phong = new Phong();
             phong.setId(phongDTO.getId());
-            phong.setSophong(phongDTO.getSophong());
-            phong.setToanha(phongDTO.getToanha());
-            phong.setTinhtrang(phongDTO.isTinhtrang());
+            phong.setSoPhong(phongDTO.getSoPhong());
+            phong.setToaNha(phongDTO.getToaNha());
+            phong.setTinhTrang(phongDTO.isTinhTrang());
             return phong;
+        }
+    }
+    public PhongDTO toDTO(Phong phong){
+        if (phong == null){
+            return null;
+        }else{
+            PhongDTO phongDTO = new PhongDTO();
+            phongDTO.setId(phong.getId());
+            phongDTO.setSoPhong(phong.getSoPhong());
+            phongDTO.setToaNha(phong.getToaNha());
+            phongDTO.setTinhTrang(phong.isTinhTrang());
+            return phongDTO;
         }
     }
 }

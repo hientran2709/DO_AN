@@ -17,21 +17,22 @@ public class Phong {
     private Integer id;
 
     @Column(name = "sophong")
-    private String sophong;
+    private String soPhong;
 
     @Column(name = "toanha")
-    private String toanha;
+    private String toaNha;
 
     @Column(name = "tinhtrang")
-    private boolean tinhtrang;
+    private boolean tinhTrang;
+
 
     @Override
     public String toString() {
         return "Phong{" +
                 "id=" + id +
-                ", sophong='" + sophong + '\'' +
-                ", toanha='" + toanha + '\'' +
-                ", tinhtrang=" + tinhtrang +
+                ", soPhong='" + soPhong + '\'' +
+                ", toaNha='" + toaNha + '\'' +
+                ", tinhTrang=" + tinhTrang +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.hientran.do_an.quanlygiangduong.client.dto;
 
+import com.hientran.do_an.quanlygiangduong.service.dto.PhongDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SearchPhongRequest {
-    private Integer numChair;
-    private Integer numTable;
-    private Boolean airConditional;
+    private PhongDTO phongDTO;
 }
