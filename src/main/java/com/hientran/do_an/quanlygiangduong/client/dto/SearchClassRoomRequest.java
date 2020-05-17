@@ -1,5 +1,6 @@
 package com.hientran.do_an.quanlygiangduong.client.dto;
 
+import com.hientran.do_an.quanlygiangduong.service.dto.ClassRoomDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddNewPhongResponse {
-    private String title;
-    private String errorCode;
+public class SearchClassRoomRequest {
+    private ClassRoomDTO classRoomDTO;
 }
