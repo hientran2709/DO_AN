@@ -5,42 +5,33 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "register_use_room")
-public class RegisterUseRoom {
+@Table(name = "class_list")
+public class ClassList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "used_date")
-    private Date  usedDate;
-
-    @Column(name = "school_shift")
-    private int schoolShift;
+    @Column(name = "class_name")
+    private String className;
 
     @Column(name = "num_of_students")
     private Integer numOfStudents;
 
-    @Column(name = "reason")
-    private String reaSon;
-
-    @Column(name = "status")
-    private Integer status;
+    @Column(name = "cource")
+    private String cource;
 
     @Override
     public String toString() {
-        return "RegisterUseRoom{" +
+        return "ClassList{" +
                 "id=" + id +
-                ", usedDate=" + usedDate +
-                ", schoolShift=" + schoolShift +
+                ", className='" + className + '\'' +
                 ", numOfStudents=" + numOfStudents +
-                ", reaSon='" + reaSon + '\'' +
-                ", status=" + status +
+                ", cource='" + cource + '\'' +
                 '}';
     }
 }
