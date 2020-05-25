@@ -1,5 +1,7 @@
 package com.hientran.do_an.quanlygiangduong.client.dto;
 
+
+import com.hientran.do_an.quanlygiangduong.service.dto.ClassRoomDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AddNewClassRoomResponse {
-    private String title;
-    private String errorCode;
+    private ClassRoomDTO classRoomDTO;
 }

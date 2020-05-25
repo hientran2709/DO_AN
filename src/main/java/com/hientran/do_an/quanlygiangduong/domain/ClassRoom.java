@@ -25,6 +25,9 @@ public class ClassRoom {
     @Column(name = "condition_room")
     private boolean conditionRoom;
 
+    @Column(name = "room_type")
+    private Integer roomType;
+
     @Override
     public String toString() {
         return "ClassRoom{" +
@@ -32,6 +35,7 @@ public class ClassRoom {
                 ", classroomNo='" + classroomNo + '\'' +
                 ", building='" + building + '\'' +
                 ", conditionRoom=" + conditionRoom +
+                ", roomType=" + roomType +
                 '}';
     }
 }

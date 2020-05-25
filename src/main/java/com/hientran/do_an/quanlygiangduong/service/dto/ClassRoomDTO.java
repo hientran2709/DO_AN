@@ -12,19 +12,19 @@ public class ClassRoomDTO {
 
     private Integer id;
 
-
     private String classroomNo;
-
 
     private String building;
 
-
     private boolean conditionRoom;
+
+    private Integer roomType;
 
     public ClassRoomDTO(ClassRoom classRoom) {
         this.id = classRoom.getId();
         this.classroomNo = classRoom.getClassroomNo();
         this.building = classRoom.getBuilding();
         this.conditionRoom = classRoom.isConditionRoom();
+        this.roomType = classRoom.getRoomType();
     }
 }
