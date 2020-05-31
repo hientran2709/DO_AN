@@ -1,5 +1,6 @@
 package com.hientran.do_an.quanlygiangduong.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,11 @@ public class Infrastructure {
 
     @Column(name = "refresher")
     private boolean refresher;
+
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "classroom_id")
+    private ClassRoom classRoom;
 
     @Override
     public String toString() {

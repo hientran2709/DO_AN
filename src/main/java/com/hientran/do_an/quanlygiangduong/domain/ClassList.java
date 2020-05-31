@@ -22,8 +22,8 @@ public class ClassList {
     @Column(name = "num_of_students")
     private Integer numOfStudents;
 
-    @Column(name = "cource")
-    private String cource;
+    @Column(name = "course")
+    private String course;
 
     @Override
     public String toString() {
@@ -31,7 +31,7 @@ public class ClassList {
                 "id=" + id +
                 ", className='" + className + '\'' +
                 ", numOfStudents=" + numOfStudents +
-                ", cource='" + cource + '\'' +
+                ", course='" + course + '\'' +
                 '}';
     }
 }

@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class InfrastructureDTO {
     private Integer id;
+    private Integer classroomId;
     private Integer numOfTable;
     private String tableType;
     private Integer numOfChair;

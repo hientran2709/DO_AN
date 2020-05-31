@@ -37,20 +37,20 @@ public class ClassRoomResource {
             return ResponseUtil.generateErrorResponse(e);
         }
     }
-    @PostMapping("/update-phong")
-    public ResponseEntity<BaseDataResponse<UpdateInfoClassRoomResponse>> updateInfoPhong(
-            @RequestBody BaseDataRequest<UpdateInfoClassRoomRequest> request) throws ServiceException, Exception {
-        try {
-            UpdateInfoClassRoomResponse response = service.updateInfoPhong(request.getBody());
-            return ResponseUtil.wrap(response);
-        } catch (ServiceException e) {
-            log.error(this.getClass().getName(), e);
-            return ResponseUtil.generateErrorResponse(e);
-        } catch (Exception e) {
-            log.error(this.getClass().getName(), e);
-            return ResponseUtil.generateErrorResponse(e);
-        }
-    }
+//    @PostMapping("/update-phong")
+//    public ResponseEntity<BaseDataResponse<UpdateInfoClassRoomResponse>> updateInfoPhong(
+//            @RequestBody BaseDataRequest<UpdateInfoClassRoomRequest> request) throws ServiceException, Exception {
+//        try {
+//            UpdateInfoClassRoomResponse response = service.updateInfoPhong(request.getBody());
+//            return ResponseUtil.wrap(response);
+//        } catch (ServiceException e) {
+//            log.error(this.getClass().getName(), e);
+//            return ResponseUtil.generateErrorResponse(e);
+//        } catch (Exception e) {
+//            log.error(this.getClass().getName(), e);
+//            return ResponseUtil.generateErrorResponse(e);
+//        }
+//    }
 
     @PostMapping("/search-phong")
     public ResponseEntity<BaseDataResponse<SearchClassRoomResponse>> searchClassroom(

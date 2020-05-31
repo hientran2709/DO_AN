@@ -15,6 +15,7 @@ public class ClassRoomMapper {
             classRoom.setClassroomNo(classRoomDTO.getClassroomNo());
             classRoom.setBuilding(classRoomDTO.getBuilding());
             classRoom.setConditionRoom(classRoomDTO.isConditionRoom());
+            classRoom.setRoomType(classRoomDTO.getRoomType());
             return classRoom;
         }
     }
@@ -27,7 +28,9 @@ public class ClassRoomMapper {
             classRoomDTO.setClassroomNo(classRoom.getClassroomNo());
             classRoomDTO.setBuilding(classRoom.getBuilding());
             classRoomDTO.setConditionRoom(classRoom.isConditionRoom());
+            classRoomDTO.setRoomType(classRoom.getRoomType());
             return classRoomDTO;
         }
     }
+
 }

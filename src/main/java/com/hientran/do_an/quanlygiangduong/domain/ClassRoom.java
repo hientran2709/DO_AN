@@ -1,5 +1,6 @@
 package com.hientran.do_an.quanlygiangduong.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,13 @@ public class ClassRoom {
     @Column(name = "condition_room")
     private boolean conditionRoom;
 
+    @Column(name = "room_type")
+    private String roomType;
+
+//    @JsonIgnore
+//    @OneToOne(mappedBy = "classroom", cascade = CascadeType.ALL)
+//    private Infrastructure infrastructure;
+
     @Override
     public String toString() {
         return "ClassRoom{" +
@@ -32,6 +40,7 @@ public class ClassRoom {
                 ", classroomNo='" + classroomNo + '\'' +
                 ", building='" + building + '\'' +
                 ", conditionRoom=" + conditionRoom +
+                ", roomType=" + roomType +
                 '}';
     }
 }
