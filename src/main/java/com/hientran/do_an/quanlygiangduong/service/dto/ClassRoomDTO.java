@@ -18,7 +18,9 @@ public class ClassRoomDTO {
 
     private boolean conditionRoom;
 
-    private Integer roomType;
+    private String roomType;
+
+    private InfrastructureDTO infrastructureDTO;
 
     public ClassRoomDTO(ClassRoom classRoom) {
         this.id = classRoom.getId();

@@ -18,9 +18,11 @@ public interface ClassRoomRepository extends JpaRepository<ClassRoom, Integer> {
     @Query("select o from ClassRoom o where " +
     "(:classroomNo is null or o.classroomNo=:classroomNo)" +
     "and (:building is null or o.building=:building )" +
-    "and (:conditionRoom is null or o.conditionRoom=:conditionRoom )")
+    "and (:conditionRoom is null or o.conditionRoom=:conditionRoom )"+
+    "and (:roomType is null or o.roomType=:roomType )")
     List<ClassRoom> searchClassroom(@Param("classroomNo") String classroomNo,
                                     @Param("building") String building,
-                                    @Param("conditionRoom") Boolean conditionRoom);
+                                    @Param("conditionRoom") Boolean conditionRoom,
+                                    @Param("roomType") String roomType);
 //    List<Phong> findBySoPhong(String soPhong);
 }

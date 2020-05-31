@@ -1,5 +1,6 @@
 package com.hientran.do_an.quanlygiangduong.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +27,11 @@ public class ClassRoom {
     private boolean conditionRoom;
 
     @Column(name = "room_type")
-    private Integer roomType;
+    private String roomType;
+
+//    @JsonIgnore
+//    @OneToOne(mappedBy = "classroom", cascade = CascadeType.ALL)
+//    private Infrastructure infrastructure;
 
     @Override
     public String toString() {
