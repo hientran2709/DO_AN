@@ -26,20 +26,8 @@ public class ClassroomStatusInfo {
     @Column(name = "used_date")
     private Date usedDate;
 
-    @Column(name = "shift_1")
-    private Boolean shift1;
-
-    @Column(name = "shift_2")
-    private Boolean shift2;
-
-    @Column(name = "shift_3")
-    private Boolean shift3;
-
-    @Column(name = "shift_4")
-    private Boolean shift4;
-
-    @Column(name = "shift_5̀")
-    private Boolean shift5;
+    @Column(name = "shift")
+    private Boolean shift;
 
     @ManyToOne
     @JoinColumn(name = "classroom_id")
@@ -49,24 +37,35 @@ public class ClassroomStatusInfo {
     @JoinColumn(name = "class_id")
     private ClassList classList;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ClassroomStatusInfo that = (ClassroomStatusInfo) o;
-        return id == that.id &&
+        return Objects.equals(id, that.id) &&
                 Objects.equals(day, that.day) &&
                 Objects.equals(usedDate, that.usedDate) &&
-                Objects.equals(shift1, that.shift1) &&
-                Objects.equals(shift2, that.shift2) &&
-                Objects.equals(shift3, that.shift3) &&
-                Objects.equals(shift4, that.shift4) &&
-                Objects.equals(shift5, that.shift5);
+                Objects.equals(shift, that.shift) &&
+                Objects.equals(classRoom, that.classRoom) &&
+                Objects.equals(classList, that.classList) &&
+                Objects.equals(user, that.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, day, usedDate, shift1, shift2, shift3, shift4, shift5);
+        return Objects.hash(id, day, usedDate, shift, classRoom, classList, user);
+    }
+    @Override
+    public String toString() {
+        return "ClassroomStatusInfo{" +
+                "id=" + id +
+                ", day='" + day + '\'' +
+                ", usedDate=" + usedDate +
+                ", shift=" + shift +
+                '}';
     }
 }
