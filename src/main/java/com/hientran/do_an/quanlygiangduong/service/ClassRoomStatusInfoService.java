@@ -25,10 +25,8 @@ import java.util.Optional;
 public class ClassRoomStatusInfoService {
     @Autowired
     private ClassRoomStatusInfoRepository classRoomStatusInfoRepository;
-
     @Autowired
     private ClassRoomStatusInfoMapper classRoomStatusInfoMapper;
-
     @Autowired
     private ClassRoomRepository classRoomRepository;
     @Autowired
@@ -45,8 +43,10 @@ public class ClassRoomStatusInfoService {
             ClassroomStatusInfo newClassroomStatus = classRoomStatusInfoMapper.dtoToClassroomStatusInfo(request.getClassRoomStatusInfoDTO());
             Optional<ClassRoom> classRoom = classRoomRepository.findById(request.getClassRoomStatusInfoDTO().getClassroomId());
             Optional<ClassList> classList = classListRepository.findById(request.getClassRoomStatusInfoDTO().getClassId());
+            Optional<User> user = userRepository.findById(request.getClassRoomStatusInfoDTO().getUser_id());
             newClassroomStatus.setClassList(classList.get());
             newClassroomStatus.setClassRoom(classRoom.get());
+            newClassroomStatus.setUser(user.get());
             Optional<ClassroomStatusInfo> updateRoomStatus = Optional.of(classRoomStatusInfoRepository.save(newClassroomStatus));
             if (!updateRoomStatus.isPresent())
                 throw ServiceExceptionBuilder.newBuilder()
