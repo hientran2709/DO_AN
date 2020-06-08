@@ -1,7 +1,5 @@
 package com.hientran.do_an.quanlygiangduong.service.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.hientran.do_an.quanlygiangduong.domain.ClassroomStatusInfo;
 import com.hientran.do_an.quanlygiangduong.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
