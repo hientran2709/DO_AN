@@ -12,6 +12,7 @@ import com.hientran.do_an.quanlygiangduong.domain.Infrastructure;
 import com.hientran.do_an.quanlygiangduong.repository.ClassRoomRepository;
 import com.hientran.do_an.quanlygiangduong.repository.InfrastructureRepository;
 import com.hientran.do_an.quanlygiangduong.service.dto.ClassRoomDTO;
+import com.hientran.do_an.quanlygiangduong.service.dto.InfrastructureDTO;
 import com.hientran.do_an.quanlygiangduong.service.mapper.ClassRoomMapper;
 import com.hientran.do_an.quanlygiangduong.service.mapper.InfrastructureMapper;
 import org.slf4j.Logger;
@@ -68,7 +69,8 @@ public class ClassRoomService {
                         .build();
             Infrastructure newInfrastructure = infrastructureMapper .dtoToInfrastructure(request.getClassRoomDTO().getInfrastructureDTO());
             newInfrastructure.setClassRoom(updatedPhong.get());
-            infrastructureRepository.save(newInfrastructure);
+            InfrastructureDTO infrastructureDTOLatest = Optional.of(infrastructureRepository.save(newInfrastructure)).map(InfrastructureDTO::new).get();
+            infrastructureDTOLatest.setClassroomId(newClassRoom.getId());
             //---send mail---
 //            SimpleMailMessage message = new SimpleMailMessage();
 //            message.setTo(MyConstants.FRIEND_EMAIL);
@@ -78,6 +80,7 @@ public class ClassRoomService {
             //---end---
             AddNewClassRoomResponse response = new AddNewClassRoomResponse();
             response.setClassRoomDTO(updatedPhong.map(ClassRoomDTO::new).get());
+            response.getClassRoomDTO().setInfrastructureDTO(infrastructureDTOLatest);
             return response;
         }catch (ServiceException e){
             throw e;
@@ -85,37 +88,6 @@ public class ClassRoomService {
             throw e;
         }
     }
-
-//    public UpdateInfoClassRoomResponse updateInfoPhong(UpdateInfoClassRoomRequest request) throws ServiceException ,Exception{
-//
-//        try {
-//            if (request == null){
-//                ServiceUtil.generateEmptyPayloadError();
-//            }
-//            ClassRoom newClassRoom = classRoomMapper.phongDTOToPhong(request.getClassRoomDTO());
-//            Optional<ClassRoom> updatedPhong = Optional.of(
-//                    Optional.of(classRoomRepository.save(newClassRoom)))
-//                    .filter(Optional::isPresent)
-//                    .map(Optional::get)
-//                    .map(classRoom -> {
-//                        log.debug("Updated Information for User: {}", classRoom);
-//                        return classRoom;
-//                    });
-//            if (!updatedPhong.isPresent()){
-//                throw ServiceExceptionBuilder.newBuilder()
-//                        .addError(new ValidationErrorResponse("UpdatePhong", ValidationError.AssertFalse,"cant update phongInfo"))
-//                        .build();
-//            }
-//            UpdateInfoClassRoomResponse response = new UpdateInfoClassRoomResponse();
-//            response.setTitle("UpdatePhong");
-//            response.setErrorCode("validate.constrains.SaveSuccess");
-//            return response;
-//        }catch (ServiceException e){
-//            throw e;
-//        }catch (Exception e){
-//            throw e;
-//        }
-//    }
     public SearchClassRoomResponse searchClassroom(SearchClassRoomRequest request) throws ServiceException {
         if(request == null)
             ServiceUtil.generateEmptyPayloadError();
