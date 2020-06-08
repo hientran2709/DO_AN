@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class NewsFeed {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @NotNull(message = "title can not null")
     @Column(name = "title", length = 512)
@@ -29,7 +30,7 @@ public class NewsFeed {
 
     @NotNull(message = "createdDate can not null")
     @Column(name = "created_date")
-    private Date createdDate;
+    private Instant createdDate;
 
     @Override
     public boolean equals(Object o) {

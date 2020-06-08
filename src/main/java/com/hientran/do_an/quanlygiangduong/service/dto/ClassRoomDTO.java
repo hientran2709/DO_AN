@@ -11,15 +11,10 @@ import lombok.NoArgsConstructor;
 public class ClassRoomDTO {
 
     private Integer id;
-
     private String classroomNo;
-
     private String building;
-
     private boolean conditionRoom;
-
     private String roomType;
-
     private InfrastructureDTO infrastructureDTO;
 
     public ClassRoomDTO(ClassRoom classRoom) {

@@ -14,15 +14,10 @@ import java.util.Date;
 public class RegisterUseRoomDTO {
 
     private Integer id;
-
     private Date usedDate;
-
     private int schoolShift;
-
     private Integer numOfStudents;
-
     private String reaSon;
-
     private Integer status;
 
     public RegisterUseRoomDTO(RegisterUseRoom registerUseRoom) {
