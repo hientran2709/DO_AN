@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -96,6 +97,21 @@ public class ClassRoomService {
         SearchClassRoomResponse response = new SearchClassRoomResponse();
         response.setClassRoomDTO(existed);
         return response;
+    }
+
+    public GetAllBuildingResponse getAllBuilding(GetAllBuildingRequest request) throws Exception, ServiceException {
+        try {
+            if (request == null)
+                ServiceUtil.generateEmptyPayloadError();
+            Set<String> buildings = classRoomRepository.getBuilding();
+            GetAllBuildingResponse response = new GetAllBuildingResponse();
+            response.setBuildings(buildings);
+            return response;
+        }catch (Exception e){
+            throw e;
+        }catch (ServiceException e){
+            throw e;
+        }
     }
 
 

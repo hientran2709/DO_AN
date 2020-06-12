@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/phong")
+@RequestMapping("/api/classroom")
 public class ClassRoomResource {
 
     private Logger log = LoggerFactory.getLogger(ClassRoomResource.class);
     @Autowired
     private ClassRoomService service;
 
-    @PostMapping("/addnew")
+    @PostMapping("/add-new")
     public ResponseEntity<BaseDataResponse<AddNewClassRoomResponse>> addnew(
             @RequestBody BaseDataRequest<AddNewClassRoomRequest> request) throws ServiceException, Exception {
         try {
@@ -52,7 +52,7 @@ public class ClassRoomResource {
 //        }
 //    }
 
-    @PostMapping("/search-phong")
+    @PostMapping("/search-classroom")
     public ResponseEntity<BaseDataResponse<SearchClassRoomResponse>> searchClassroom(
             @RequestBody BaseDataRequest<SearchClassRoomRequest> request) throws ServiceException, Exception {
         try {
@@ -62,6 +62,20 @@ public class ClassRoomResource {
             log.error(this.getClass().getName(), e);
             return ResponseUtil.generateErrorResponse(e);
         } catch (Exception e) {
+            log.error(this.getClass().getName(), e);
+            return ResponseUtil.generateErrorResponse(e);
+        }
+    }
+    @PostMapping("/get-building")
+    public ResponseEntity<BaseDataResponse<GetAllBuildingResponse>> getAllBuilding(
+            @RequestBody BaseDataRequest<GetAllBuildingRequest> request) throws ServiceException, Exception {
+        try {
+            GetAllBuildingResponse response = service.getAllBuilding(request.getBody());
+            return ResponseUtil.wrap(response);
+        } catch (Exception e) {
+            log.error(this.getClass().getName(), e);
+            return ResponseUtil.generateErrorResponse(e);
+        }catch (ServiceException e) {
             log.error(this.getClass().getName(), e);
             return ResponseUtil.generateErrorResponse(e);
         }
