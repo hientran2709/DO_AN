@@ -40,7 +40,7 @@ public class ClassRoomStatusInfoService {
         try {
             if (request == null)
                 ServiceUtil.generateEmptyPayloadError();
-            ClassroomStatusInfo newClassroomStatus = classRoomStatusInfoMapper.dtoToClassroomStatusInfo(request.getClassRoomStatusInfoDTO());
+            ClassroomStatusInfo newClassroomStatus = classRoomStatusInfoMapper.toEntity(request.getClassRoomStatusInfoDTO());
             Optional<ClassRoom> classRoom = classRoomRepository.findById(request.getClassRoomStatusInfoDTO().getClassroomId());
             Optional<ClassList> classList = classListRepository.findById(request.getClassRoomStatusInfoDTO().getClassId());
             Optional<User> user = userRepository.findById(request.getClassRoomStatusInfoDTO().getUser_id());
