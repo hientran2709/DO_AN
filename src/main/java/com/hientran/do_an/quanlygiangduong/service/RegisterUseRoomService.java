@@ -9,4 +9,6 @@ public class RegisterUseRoomService {
     @Autowired
     private RegisterUseRoomRepository registerUseRoomRepository;
 
+
+
 }

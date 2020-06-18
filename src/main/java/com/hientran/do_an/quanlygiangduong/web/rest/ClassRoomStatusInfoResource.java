@@ -27,7 +27,7 @@ public class ClassRoomStatusInfoResource {
     @Autowired
     private ClassRoomStatusInfoService classRoomStatusInfoService;
 
-    @PostMapping("/addnew")
+    @PostMapping("/add-new")
     public ResponseEntity<BaseDataResponse<ClassRoomStatusInfoResponse>> addClassRoomStatusInfo(
             @RequestBody BaseDataRequest<ClassRoomStatusInfoRequest> request) throws ServiceException, Exception {
         try {

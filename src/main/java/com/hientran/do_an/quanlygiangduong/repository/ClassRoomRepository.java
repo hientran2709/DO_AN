@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface ClassRoomRepository extends JpaRepository<ClassRoom, Integer> {
@@ -24,5 +25,7 @@ public interface ClassRoomRepository extends JpaRepository<ClassRoom, Integer> {
                                     @Param("building") String building,
                                     @Param("conditionRoom") Boolean conditionRoom,
                                     @Param("roomType") String roomType);
-//    List<Phong> findBySoPhong(String soPhong);
+
+    @Query("select o.building from ClassRoom o")
+    Set<String> getBuilding();
 }

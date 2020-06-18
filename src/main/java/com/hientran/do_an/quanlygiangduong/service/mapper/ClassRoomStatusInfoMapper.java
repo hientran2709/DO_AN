@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ClassRoomStatusInfoMapper {
-    public ClassroomStatusInfo dtoToClassroomStatusInfo(ClassRoomStatusInfoDTO classRoomStatusInfoDTO){
+    public ClassroomStatusInfo toEntity(ClassRoomStatusInfoDTO classRoomStatusInfoDTO){
         if (classRoomStatusInfoDTO == null)
             return null;
         ModelMapper modelMapper = new ModelMapper();

@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -72,11 +73,11 @@ public class ClassRoomService {
             InfrastructureDTO infrastructureDTOLatest = Optional.of(infrastructureRepository.save(newInfrastructure)).map(InfrastructureDTO::new).get();
             infrastructureDTOLatest.setClassroomId(newClassRoom.getId());
             //---send mail---
-//            SimpleMailMessage message = new SimpleMailMessage();
-//            message.setTo(MyConstants.FRIEND_EMAIL);
-//            message.setSubject("Test Simple Email");
-//            message.setText("Hello, Im testing Simple Email");
-//            this.emailSender.send(message);
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(MyConstants.FRIEND_EMAIL);
+            message.setSubject("Register_Use_Room");
+            message.setText("bạn đã đăng kí phòng thành công");
+            this.emailSender.send(message);
             //---end---
             AddNewClassRoomResponse response = new AddNewClassRoomResponse();
             response.setClassRoomDTO(updatedPhong.map(ClassRoomDTO::new).get());
@@ -93,9 +94,28 @@ public class ClassRoomService {
             ServiceUtil.generateEmptyPayloadError();
         List<ClassRoomDTO> existed = classRoomRepository.searchClassroom(request.getClassroomNo(),request.getBuilding(),request.getConditionRoom(),request.getRoomType()).stream()
                 .map(classRoomMapper::toDTO).collect(Collectors.toList());
+        existed.stream().forEach(c ->{
+            Optional<InfrastructureDTO> infrastructure = infrastructureRepository.findByClassRoom_Id(c.getId()).map(InfrastructureDTO::new);
+            c.setInfrastructureDTO(infrastructure.get());
+        });
         SearchClassRoomResponse response = new SearchClassRoomResponse();
         response.setClassRoomDTO(existed);
         return response;
+    }
+
+    public GetAllBuildingResponse getAllBuilding(GetAllBuildingRequest request) throws Exception, ServiceException {
+        try {
+            if (request == null)
+                ServiceUtil.generateEmptyPayloadError();
+            Set<String> buildings = classRoomRepository.getBuilding();
+            GetAllBuildingResponse response = new GetAllBuildingResponse();
+            response.setBuildings(buildings);
+            return response;
+        }catch (Exception e){
+            throw e;
+        }catch (ServiceException e){
+            throw e;
+        }
     }
 
 
