@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface ClassListRepository extends JpaRepository<ClassList,Integer> {
     Optional<ClassList> findById(Integer id);
+    Optional<ClassList> findByClassNameAndCourse(String className,String course);
 }

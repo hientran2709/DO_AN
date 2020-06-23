@@ -1,5 +1,6 @@
 package com.hientran.do_an.quanlygiangduong.service.dto;
 
+import com.hientran.do_an.quanlygiangduong.domain.ClassList;
 import com.hientran.do_an.quanlygiangduong.domain.ClassroomStatusInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,17 +14,18 @@ import java.util.Date;
 public class ClassRoomStatusInfoDTO {
 
     private Integer id;
-    private Integer classroomId;
     private String day;
     private Date usedDate;
-    private Integer classId;
-    private Boolean shift;
+    private String shift;
     private Integer user_id;
+    private ClassRoomDTO classRoomDTO = new ClassRoomDTO();
+    private CLassListDTO cLassListDTO = new CLassListDTO();
 
     public ClassRoomStatusInfoDTO(ClassroomStatusInfo classroomStatusInfo) {
         this.id = classroomStatusInfo.getId();
         this.day = classroomStatusInfo.getDay();
         this.usedDate = classroomStatusInfo.getUsedDate();
+        this.shift = classroomStatusInfo.getShift();
     }
 }
 

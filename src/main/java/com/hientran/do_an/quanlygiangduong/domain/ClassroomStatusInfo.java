@@ -27,14 +27,14 @@ public class ClassroomStatusInfo {
     private Date usedDate;
 
     @Column(name = "shift")
-    private Boolean shift;
+    private String shift;
 
     @ManyToOne
     @JoinColumn(name = "classroom_id")
     private ClassRoom classRoom;
 
     @ManyToOne
-    @JoinColumn(name = "class_id")
+    @JoinColumn(name = "class_list_id")
     private ClassList classList;
 
     @ManyToOne

@@ -1,10 +1,12 @@
 package com.hientran.do_an.quanlygiangduong.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -24,6 +26,10 @@ public class ClassList {
 
     @Column(name = "course")
     private String course;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "classList")
+    private List<ClassroomStatusInfo> classroomStatusInfos;
 
     @Override
     public String toString() {

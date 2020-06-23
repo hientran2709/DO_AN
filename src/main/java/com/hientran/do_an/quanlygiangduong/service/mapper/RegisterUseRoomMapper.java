@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RegisterUseRoomMapper {
-    private RegisterUseRoom toRegisterUseRoom(RegisterUseRoomDTO registerUseRoomDTO){
+    public RegisterUseRoom toEntity(RegisterUseRoomDTO registerUseRoomDTO){
         RegisterUseRoom res = new RegisterUseRoom();
         res.setId(registerUseRoomDTO.getId());
         res.setNumOfStudents(registerUseRoomDTO.getNumOfStudents());

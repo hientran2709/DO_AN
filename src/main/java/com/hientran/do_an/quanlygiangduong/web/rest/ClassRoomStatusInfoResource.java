@@ -4,10 +4,7 @@ import com.fis.egp.common.client.rest.dto.BaseDataRequest;
 import com.fis.egp.common.client.rest.dto.BaseDataResponse;
 import com.fis.egp.common.exception.ServiceException;
 import com.fis.egp.common.util.ResponseUtil;
-import com.hientran.do_an.quanlygiangduong.client.dto.AddNewClassRoomRequest;
-import com.hientran.do_an.quanlygiangduong.client.dto.AddNewClassRoomResponse;
-import com.hientran.do_an.quanlygiangduong.client.dto.ClassRoomStatusInfoRequest;
-import com.hientran.do_an.quanlygiangduong.client.dto.ClassRoomStatusInfoResponse;
+import com.hientran.do_an.quanlygiangduong.client.dto.*;
 import com.hientran.do_an.quanlygiangduong.service.ClassRoomStatusInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +29,36 @@ public class ClassRoomStatusInfoResource {
             @RequestBody BaseDataRequest<ClassRoomStatusInfoRequest> request) throws ServiceException, Exception {
         try {
             ClassRoomStatusInfoResponse response = classRoomStatusInfoService.addClassRoomStatusInfo(request.getBody());
+            return ResponseUtil.wrap(response);
+        } catch (ServiceException e) {
+            log.error(this.getClass().getName(), e);
+            return ResponseUtil.generateErrorResponse(e);
+        } catch (Exception e) {
+            log.error(this.getClass().getName(), e);
+            return ResponseUtil.generateErrorResponse(e);
+        }
+    }
+
+    @PostMapping("/room-empty")
+    public ResponseEntity<BaseDataResponse<GetRoomEmptyResponse>> getRoomEmpty(
+            @RequestBody BaseDataRequest<GetRoomEmptyRequest> request) throws ServiceException, Exception {
+        try {
+            GetRoomEmptyResponse response = classRoomStatusInfoService.getRoomEmpty(request.getBody());
+            return ResponseUtil.wrap(response);
+        } catch (ServiceException e) {
+            log.error(this.getClass().getName(), e);
+            return ResponseUtil.generateErrorResponse(e);
+        } catch (Exception e) {
+            log.error(this.getClass().getName(), e);
+            return ResponseUtil.generateErrorResponse(e);
+        }
+    }
+
+    @PostMapping("/room-empty-detail")
+    public ResponseEntity<BaseDataResponse<GetRoomEmptyDetailResponse>> getRoomDetail(
+            @RequestBody BaseDataRequest<GetRoomEmptyDetailRequest> request) throws ServiceException, Exception {
+        try {
+            GetRoomEmptyDetailResponse response = classRoomStatusInfoService.getRoomDetail(request.getBody());
             return ResponseUtil.wrap(response);
         } catch (ServiceException e) {
             log.error(this.getClass().getName(), e);
