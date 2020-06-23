@@ -21,7 +21,7 @@ public class RegisterUseRoom {
     private Date  usedDate;
 
     @Column(name = "school_shift")
-    private int schoolShift;
+    private String schoolShift;
 
     @Column(name = "num_of_students")
     private Integer numOfStudents;
@@ -30,7 +30,19 @@ public class RegisterUseRoom {
     private String reaSon;
 
     @Column(name = "status")
-    private Integer status;
+    private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "classroom_id")
+    private ClassRoom classRoom;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "class_list_id")
+    private ClassList classList;
 
     @Override
     public String toString() {

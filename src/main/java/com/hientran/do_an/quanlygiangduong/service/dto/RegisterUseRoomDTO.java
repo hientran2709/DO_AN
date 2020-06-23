@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import java.util.Date;
 
 @Data
@@ -15,10 +14,12 @@ public class RegisterUseRoomDTO {
 
     private Integer id;
     private Date usedDate;
-    private int schoolShift;
+    private String schoolShift;
     private Integer numOfStudents;
     private String reaSon;
-    private Integer status;
+    private String status;
+    private ClassRoomDTO classRoomDTO = new ClassRoomDTO();
+    private CLassListDTO cLassListDTO = new CLassListDTO();
 
     public RegisterUseRoomDTO(RegisterUseRoom registerUseRoom) {
         this.id = registerUseRoom.getId();

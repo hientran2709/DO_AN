@@ -27,6 +27,7 @@ public class UserService {
                 ServiceUtil.generateEmptyPayloadError();
             List<User> newUsers = userMapper.toEntity(request.getUserDTO());
             List<UserDTO> userLatest = userRepository.saveAll(newUsers).stream().map(UserDTO::new).collect(Collectors.toList());
+
             AddUserResponse response = new AddUserResponse();
             response.setUserDTO(userLatest);
             return  response;

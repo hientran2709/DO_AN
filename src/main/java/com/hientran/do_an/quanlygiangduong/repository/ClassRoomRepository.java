@@ -13,7 +13,6 @@ import java.util.Set;
 @Repository
 public interface ClassRoomRepository extends JpaRepository<ClassRoom, Integer> {
 
-    Optional<ClassRoom> findById(Integer id);
     Optional<ClassRoom> findByClassroomNoAndBuilding(String classroomNo, String building);
 
     @Query("select o from ClassRoom o where " +
@@ -28,4 +27,6 @@ public interface ClassRoomRepository extends JpaRepository<ClassRoom, Integer> {
 
     @Query("select o.building from ClassRoom o")
     Set<String> getBuilding();
+
+    List<ClassRoom> findByBuilding(String building);
 }

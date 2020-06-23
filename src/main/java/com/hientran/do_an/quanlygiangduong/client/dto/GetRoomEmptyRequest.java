@@ -1,13 +1,15 @@
 package com.hientran.do_an.quanlygiangduong.client.dto;
 
-import com.hientran.do_an.quanlygiangduong.service.dto.RegisterUseRoomDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterUseRoomResponse {
-    private RegisterUseRoomDTO registerUseRoomDTO;
+public class GetRoomEmptyRequest {
+    private String building;
+    private Date usedDate;
 }
