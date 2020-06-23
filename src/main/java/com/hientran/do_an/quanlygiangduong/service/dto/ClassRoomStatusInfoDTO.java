@@ -1,6 +1,5 @@
 package com.hientran.do_an.quanlygiangduong.service.dto;
 
-import com.hientran.do_an.quanlygiangduong.domain.ClassList;
 import com.hientran.do_an.quanlygiangduong.domain.ClassroomStatusInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
