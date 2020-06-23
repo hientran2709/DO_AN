@@ -66,7 +66,6 @@ public class RegisterUseRoomService {
             newRegister.setClassRoom(classRoom.get());
             newRegister.setClassList(classList.get());
             newRegister.setStatus(RegisterStatus.WAIT_APPROVE.getValue());
-
             Optional<RegisterUseRoomDTO> registerLatest = Optional.of(registerUseRoomRepository.save(newRegister)).map(RegisterUseRoomDTO::new);
             RegisterUseRoomResponse response = new RegisterUseRoomResponse();
             response.setRegisterUseRoomDTO(registerLatest.get());
