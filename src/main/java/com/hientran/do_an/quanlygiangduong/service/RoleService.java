@@ -4,7 +4,7 @@ import com.fis.egp.common.exception.ServiceException;
 import com.fis.egp.common.util.ServiceUtil;
 import com.hientran.do_an.quanlygiangduong.client.dto.RoleRequest;
 import com.hientran.do_an.quanlygiangduong.client.dto.RoleResponse;
-import com.hientran.do_an.quanlygiangduong.domain.Roles;
+import com.hientran.do_an.quanlygiangduong.domain.Role;
 import com.hientran.do_an.quanlygiangduong.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,10 +21,10 @@ public class RoleService {
         try {
             if (request == null)
                 ServiceUtil.generateEmptyPayloadError();
-            List<Roles> addRoles = new ArrayList<>();
+            List<Role> addRoles = new ArrayList<>();
             request.getRoles().stream().forEach(c -> {
-                Roles roles = roleRepository.save(c);
-                addRoles.add(roles);
+                Role role = roleRepository.save(c);
+                addRoles.add(role);
             });
             RoleResponse response = new RoleResponse();
             response.setRoles(addRoles);
