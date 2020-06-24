@@ -12,15 +12,16 @@ import java.util.List;
 @AllArgsConstructor
 public class UserDTO {
 
-    private int id;
+    private String userId;
     private String name;
     private String email;
     private String password;
     private String phone;
-    private List<ClassRoomStatusInfoDTO> classRoomStatusInfoDTOS;
+    private List<String> roles;
+//    private List<ClassRoomStatusInfoDTO> classRoomStatusInfoDTOS;
 
     public UserDTO(User user) {
-        this.id = user.getId();
+        this.userId = user.getUserId();
         this.name = user.getName();
         this.email = user.getEmail();
         this.password = user.getPassword();

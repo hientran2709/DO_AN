@@ -1,8 +1,12 @@
 package com.hientran.do_an.quanlygiangduong.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -11,28 +15,45 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user_role", schema = "hientv9-doan", catalog = "")
+@Table(name = "user_role")
 public class UserRole {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @EmbeddedId
+    private UserRolePK id;
 
-    @Column(name = "role_id", nullable = false)
-    private Integer roleId;
+    @ManyToOne
+    @JoinColumn(name = "user_id",insertable = false,updatable = false)
+    @JsonBackReference
+    @JsonIgnore
+    @ToString.Exclude
+    private User user;
 
-    @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    @ManyToOne
+    @JoinColumn(name = "role_name",referencedColumnName = "name" ,insertable = false,updatable = false)
+    @JsonManagedReference
+    @JsonIgnore
+    private Role role;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserRole userRole = (UserRole) o;
-        return userId == userRole.userId;
+        return Objects.equals(id, userRole.id) &&
+                Objects.equals(role, userRole.role) &&
+                Objects.equals(user, userRole.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId);
+        return Objects.hash(id, role, user);
+    }
+
+    @Override
+    public String toString() {
+        return "UserRole{" +
+                "id=" + id +
+                ", role=" + role +
+                ", user=" + user +
+                '}';
     }
 }
