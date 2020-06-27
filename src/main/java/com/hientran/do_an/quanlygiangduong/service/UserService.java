@@ -1,9 +1,14 @@
 package com.hientran.do_an.quanlygiangduong.service;
 
+import com.fis.egp.common.client.rest.dto.ValidationErrorResponse;
 import com.fis.egp.common.exception.ServiceException;
+import com.fis.egp.common.util.ServiceExceptionBuilder;
 import com.fis.egp.common.util.ServiceUtil;
+import com.fis.egp.common.util.StringUtils;
 import com.hientran.do_an.quanlygiangduong.client.dto.AddUserRequest;
 import com.hientran.do_an.quanlygiangduong.client.dto.AddUserResponse;
+import com.hientran.do_an.quanlygiangduong.client.dto.LoginRequest;
+import com.hientran.do_an.quanlygiangduong.client.dto.LoginResponse;
 import com.hientran.do_an.quanlygiangduong.domain.Role;
 import com.hientran.do_an.quanlygiangduong.domain.User;
 import com.hientran.do_an.quanlygiangduong.domain.UserRole;
@@ -17,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -65,5 +71,39 @@ public class UserService {
         }).collect(Collectors.toList());
        return userRoles;
     }
+    public LoginResponse login(LoginRequest request) throws ServiceException ,Exception{
+        try {
+            if (request == null)
+                ServiceUtil.generateEmptyPayloadError();
+            if (StringUtils.isEmpty(request.getUserName()))
+                throw ServiceExceptionBuilder.newBuilder()
+                        .addError(new ValidationErrorResponse("UserName","cant not null"))
+                        .build();
+            if (StringUtils.isEmpty(request.getPassword()))
+                throw ServiceExceptionBuilder.newBuilder()
+                        .addError(new ValidationErrorResponse("Password","cant not null"))
+                        .build();
+            Optional<UserDTO> user = userRepository.findByUserId(request.getUserName()).map(UserDTO::new);
+            if (!user.isPresent())
+                throw ServiceExceptionBuilder.newBuilder()
+                        .addError(new ValidationErrorResponse("User","Invalid Username or Password"))
+                        .build();
+            if (!user.get().getPassword().equals(request.getPassword()))
+                throw ServiceExceptionBuilder.newBuilder()
+                        .addError(new ValidationErrorResponse("User","Invalid Username or Password"))
+                        .build();
+            List<String> roles = userRoleRepository.findByUser_UserId(user.get().getUserId()).stream().map(UserRole::getRole).map(Role::getName).collect(Collectors.toList());
+            user.get().setRoles(roles);
+            LoginResponse response = new LoginResponse();
+            response.setUserDTO(user.get());
+            return response;
+        }catch (ServiceException e){
+            throw e;
+        }catch (Exception e){
+            throw e;
+        }
+    }
+
+
 
 }
