@@ -15,6 +15,7 @@ import com.hientran.do_an.quanlygiangduong.repository.ClassListRepository;
 import com.hientran.do_an.quanlygiangduong.repository.ClassRoomRepository;
 import com.hientran.do_an.quanlygiangduong.repository.ClassRoomStatusInfoRepository;
 import com.hientran.do_an.quanlygiangduong.repository.UserRepository;
+import com.hientran.do_an.quanlygiangduong.service.dto.ClassRoomDTO;
 import com.hientran.do_an.quanlygiangduong.service.dto.ClassRoomStatusInfoDTO;
 import com.hientran.do_an.quanlygiangduong.service.mapper.ClassRoomStatusInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -150,10 +151,14 @@ public class ClassRoomStatusInfoService {
                 throw ServiceExceptionBuilder.newBuilder()
                         .addError(new ValidationErrorResponse("ClassRoom","Not Found"))
                         .build();
-            Map<String,List<ClassroomStatusInfo>> roomDetail = new HashMap<>();
+            Map<String,List<ClassRoomDTO>> roomDetail = new HashMap<>();
             List<ClassroomStatusInfo> existed = classRoomStatusInfoRepository.findByClassRoom_BuildingAndUsedDateAndShift(request.getBuilding(),request.getUsedDate(),request.getShift());
 
-            roomDetail.put(request.getShift(),existed);
+            List<ClassRoomDTO> roomUsed = existed.stream().map(ClassroomStatusInfo::getClassRoom).map(ClassRoomDTO::new).collect(Collectors.toList());
+            List<String> roomNameUsed = roomUsed.stream().map(ClassRoomDTO::getClassroomNo).collect(Collectors.toList());
+            List<ClassRoomDTO> roomEmpty = classRooms.stream().filter(c -> !roomNameUsed.contains(c.getClassroomNo())).map(ClassRoomDTO::new).collect(Collectors.toList());
+            roomDetail.put("Used",roomUsed);
+            roomDetail.put("empty",roomEmpty);
             GetRoomEmptyDetailResponse response = new GetRoomEmptyDetailResponse();
             response.setRoomDetails(roomDetail);
             return response;
@@ -163,4 +168,19 @@ public class ClassRoomStatusInfoService {
             throw e;
         }
     }
+    public TeachingScheduleResponse teachingSchedule(TeachingScheduleRequest request) throws ServiceException,Exception {
+        try {
+            if (request == null)
+                ServiceUtil.generateEmptyPayloadError();
+            List<ClassroomStatusInfo> teachingSchedule = classRoomStatusInfoRepository.findByUser_UserId(request.getUserName());
+            TeachingScheduleResponse response = new TeachingScheduleResponse();
+            response.setTeachingSchedule(teachingSchedule);
+            return  response;
+        }catch (ServiceException e){
+            throw e;
+        }catch (Exception e){
+            throw e;
+        }
+    }
+
 }
