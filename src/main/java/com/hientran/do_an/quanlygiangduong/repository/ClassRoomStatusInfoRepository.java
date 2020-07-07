@@ -12,5 +12,7 @@ import java.util.Optional;
 public interface ClassRoomStatusInfoRepository extends JpaRepository<ClassroomStatusInfo,Integer> {
     List<ClassroomStatusInfo> findByClassRoom_BuildingAndUsedDate(String building, Date usedDate);
 
+    List<ClassroomStatusInfo> findByUser_UserId(String userId);
+
     List<ClassroomStatusInfo> findByClassRoom_BuildingAndUsedDateAndShift(String building, Date usedDate,String shift);
 }
